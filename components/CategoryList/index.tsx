@@ -1,4 +1,4 @@
-import { db } from "@/app/lib/prisma";
+import { db } from "@/lib/prisma";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import { CategoryItem } from "../CategoryItem";

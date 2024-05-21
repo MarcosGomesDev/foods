@@ -1,10 +1,10 @@
-import { CategoryList } from "./components/CategoryList";
-import { Header } from "./components/Header";
-import { ProductList } from "./components/ProductList";
-import { PromoBanner } from "./components/PromoBanner";
-import { RestaurantList } from "./components/RestaurantList";
-import { SearchInput } from "./components/SearchInput";
-import { db } from "./lib/prisma";
+import { CategoryList } from "../components/CategoryList";
+import { Header } from "../components/Header";
+import { ProductList } from "../components/ProductList";
+import { PromoBanner } from "../components/PromoBanner";
+import { RestaurantList } from "../components/RestaurantList";
+import { SearchInput } from "../components/SearchInput";
+import { db } from "../lib/prisma";
 
 export default async function Home() {
   const products = await db.product.findMany({
