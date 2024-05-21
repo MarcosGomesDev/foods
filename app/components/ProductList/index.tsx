@@ -1,4 +1,4 @@
-import { db } from "@/app/lib/prisma";
+import { Prisma } from "@prisma/client";
 import { ChevronRightIcon } from "lucide-react";
 import React from "react";
 import { twMerge } from "tailwind-merge";
@@ -8,29 +8,23 @@ import { Button } from "../ui/button";
 interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   hasButton?: boolean;
+  products: Prisma.ProductGetPayload<{
+    include: {
+      restaurant: {
+        select: {
+          name: true;
+        };
+      };
+    };
+  }>[];
 }
 
 export async function ProductList({
   className,
   title,
   hasButton = false,
+  products,
 }: ProductListProps) {
-  const products = await db.product.findMany({
-    where: {
-      discountPercentage: {
-        gt: 0,
-      },
-    },
-    take: 10,
-    include: {
-      restaurant: {
-        select: {
-          name: true,
-        },
-      },
-    },
-  });
-
   return (
     <div className={twMerge([className])}>
       <div className="flex items-center justify-between px-5">
