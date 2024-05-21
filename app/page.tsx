@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CategoryList } from "./components/CategoryList";
 import { Header } from "./components/Header";
+import { ProductList } from "./components/ProductList";
 import { SearchInput } from "./components/SearchInput";
 
 export default function Home() {
@@ -22,6 +23,8 @@ export default function Home() {
           quality={100}
         />
       </div>
+
+      <ProductList className="space-y-4 px-5 pt-6" />
     </>
   );
 }
