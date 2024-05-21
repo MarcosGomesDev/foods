@@ -2,6 +2,7 @@ import { CategoryList } from "./components/CategoryList";
 import { Header } from "./components/Header";
 import { ProductList } from "./components/ProductList";
 import { PromoBanner } from "./components/PromoBanner";
+import { RestaurantList } from "./components/RestaurantList";
 import { SearchInput } from "./components/SearchInput";
 import { db } from "./lib/prisma";
 
@@ -20,6 +21,10 @@ export default async function Home() {
         },
       },
     },
+  });
+
+  const restaurants = await db.restaurant.findMany({
+    take: 10,
   });
 
   return (
@@ -49,6 +54,13 @@ export default async function Home() {
           alt="A partir de R$ 17,90 em lanches"
         />
       </div>
+
+      <RestaurantList
+        className="space-y-4 px-5 py-6"
+        title="Restaurantes Recomendados"
+        hasButton
+        restaurants={restaurants}
+      />
     </>
   );
 }
