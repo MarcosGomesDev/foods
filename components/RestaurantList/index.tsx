@@ -32,8 +32,15 @@ export function RestaurantList({
       </div>
 
       <div className="flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
-        {restaurants.map((restaurant) => (
-          <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+        {restaurants.map((restaurant, index) => (
+          <RestaurantItem
+            key={restaurant.id}
+            restaurant={restaurant}
+            className={twMerge([
+              index === 0 ? "ml-5" : "",
+              index === restaurants.length - 1 ? "mr-5" : "",
+            ])}
+          />
         ))}
       </div>
     </div>

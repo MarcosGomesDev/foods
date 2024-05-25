@@ -2,15 +2,19 @@ import { formatCurrency } from "@/helpers/price";
 import { Restaurant } from "@prisma/client";
 import { BikeIcon, HeartIcon, StarIcon, TimerIcon } from "lucide-react";
 import Image from "next/image";
+import React from "react";
+import { twMerge } from "tailwind-merge";
 import { Button } from "../ui/button";
 
-interface RestaurantItemProps {
+interface RestaurantItemProps extends React.HTMLAttributes<HTMLDivElement> {
   restaurant: Restaurant;
 }
 
-export function RestaurantItem({ restaurant }: RestaurantItemProps) {
+export function RestaurantItem({ restaurant, className }: RestaurantItemProps) {
   return (
-    <div className="min-w-[266px] max-w-[266px] space-y-3">
+    <div
+      className={twMerge(["min-w-[266px] max-w-[266px] space-y-3", className])}
+    >
       <div className="relative h-[136px]">
         <Image
           src={restaurant.imageUrl}
