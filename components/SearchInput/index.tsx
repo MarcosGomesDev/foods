@@ -12,7 +12,7 @@ export function SearchInput({ className }: SearchInputProps) {
       <Input
         type="search"
         placeholder="Buscar restaurantes"
-        className="border-none"
+        className="border-none bg-white"
       />
       <Button size="icon">
         <SearchIcon size={20} />
