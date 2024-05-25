@@ -1,9 +1,11 @@
 import { calculateProductTotalPrice, formatCurrency } from "@/helpers/price";
 import { Prisma } from "@prisma/client";
-import { ArrowDownIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { twMerge } from "tailwind-merge";
+import { DiscountBadge } from "../DiscountBadge";
 
-interface ProductItemProps {
+interface ProductItemProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Prisma.ProductGetPayload<{
     include: {
       restaurant: {
@@ -15,42 +17,47 @@ interface ProductItemProps {
   }>;
 }
 
-export function ProductItem({ product }: ProductItemProps) {
+export function ProductItem({ product, className }: ProductItemProps) {
   return (
-    <div className="w-[150px] min-w-[150px] space-y-2">
-      <div className="relative h-[150px] w-full">
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          fill
-          className="rounded-lg object-cover shadow-md"
-        />
+    <Link
+      className={twMerge(["w-[150px] min-w-[150px]", className])}
+      href={`/products/${product.id}`}
+    >
+      <div className="w-full space-y-2">
+        <div className="relative h-[150px] w-full">
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            className="rounded-lg object-cover shadow-md"
+          />
 
-        {product.discountPercentage && (
-          <div className="absolute left-2 top-2 flex items-center gap-[2px] bg-primary px-2 py-[2px] text-xs font-semibold text-white">
-            <ArrowDownIcon size={12} />
-            <span>{product.discountPercentage}%</span>
-          </div>
-        )}
-      </div>
-
-      <div>
-        <h2 className="truncate text-sm">{product.name}</h2>
-        <div className="flex items-center gap-1">
-          <h3 className="font-semibold">
-            {formatCurrency(calculateProductTotalPrice(product))}
-          </h3>
-          {product.discountPercentage > 0 && (
-            <span className="text-xs text-muted line-through">
-              {formatCurrency(Number(product.price))}
-            </span>
+          {product.discountPercentage && (
+            <DiscountBadge
+              product={product}
+              className="absolute left-2 top-2"
+            />
           )}
         </div>
 
-        <span className="block text-xs text-muted-foreground">
-          {product.restaurant.name}
-        </span>
+        <div>
+          <h2 className="truncate text-sm">{product.name}</h2>
+          <div className="flex items-center gap-1">
+            <h3 className="font-semibold">
+              {formatCurrency(calculateProductTotalPrice(product))}
+            </h3>
+            {product.discountPercentage > 0 && (
+              <span className="text-xs text-muted line-through">
+                {formatCurrency(Number(product.price))}
+              </span>
+            )}
+          </div>
+
+          <span className="block text-xs text-muted-foreground">
+            {product.restaurant.name}
+          </span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

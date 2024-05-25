@@ -41,8 +41,15 @@ export async function ProductList({
       </div>
 
       <div className="flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
-        {products.map((product) => (
-          <ProductItem key={product.id} product={product} />
+        {products.map((product, index) => (
+          <ProductItem
+            key={product.id}
+            product={product}
+            className={twMerge([
+              index === 0 ? "ml-5" : "",
+              index === products.length - 1 ? "mr-5" : "",
+            ])}
+          />
         ))}
       </div>
     </div>
