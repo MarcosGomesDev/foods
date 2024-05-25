@@ -9,7 +9,12 @@ export async function CategoryList({ className }: CategoryListProps) {
   const categories = await db.category.findMany();
 
   return (
-    <div className={twMerge(["flex gap-3 overflow-x-scroll", className])}>
+    <div
+      className={twMerge([
+        "flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden",
+        className,
+      ])}
+    >
       {categories.map((category) => (
         <CategoryItem key={category.id} category={category} />
       ))}
