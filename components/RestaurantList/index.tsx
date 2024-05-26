@@ -37,8 +37,8 @@ export function RestaurantList({
             key={restaurant.id}
             restaurant={restaurant}
             className={twMerge([
-              index === 0 ? "ml-5" : "",
-              index === restaurants.length - 1 ? "mr-5" : "",
+              index === 0 ? "pl-5" : "",
+              index === restaurants.length - 1 ? "pr-5" : "",
             ])}
           />
         ))}
