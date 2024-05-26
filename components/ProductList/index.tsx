@@ -19,7 +19,7 @@ interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
   }>[];
 }
 
-export async function ProductList({
+export function ProductList({
   className,
   title,
   hasButton = false,
