@@ -87,7 +87,8 @@ export function ProductDetails({
             <Button
               size="icon"
               variant="ghost"
-              className="border border-solid border-muted-foreground"
+              disabled={quantity === 1}
+              className="border border-solid border-muted-foreground hover:bg-transparent"
               onClick={handleDecreaseQuantityClick}
             >
               <ChevronLeftIcon />
