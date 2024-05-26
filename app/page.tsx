@@ -30,19 +30,20 @@ export default async function Home() {
   return (
     <>
       <Header />
+
       <SearchInput className="px-5 pt-6" />
 
       <CategoryList className="px-5 pt-6" />
 
       <div className="px-5 pt-6">
         <PromoBanner
-          src="/promo-banner-01"
+          src="/promo-banner-01.png"
           alt="Até 30% de desconto em pizzas"
         />
       </div>
 
       <ProductList
-        className="space-y-4 px-5 pt-6"
+        className="space-y-4 pt-6"
         title="Pedidos Recomendados"
         hasButton
         products={products}
@@ -50,13 +51,13 @@ export default async function Home() {
 
       <div className="px-5 pt-6">
         <PromoBanner
-          src="/promo-banner-02"
+          src="/promo-banner-02.png"
           alt="A partir de R$ 17,90 em lanches"
         />
       </div>
 
       <RestaurantList
-        className="space-y-4 px-5 py-6"
+        className="space-y-4 py-6"
         title="Restaurantes Recomendados"
         hasButton
         restaurants={restaurants}
