@@ -20,11 +20,11 @@ interface ProductItemProps extends React.HTMLAttributes<HTMLDivElement> {
 export function ProductItem({ product, className }: ProductItemProps) {
   return (
     <Link
-      className={twMerge(["w-[150px] min-w-[150px]", className])}
+      className={twMerge(["min-w-[150px] max-w-[150px]", className])}
       href={`/products/${product.id}`}
     >
       <div className="w-full space-y-2">
-        <div className="relative h-[150px] w-full">
+        <div className="relative h-[136px]">
           <Image
             src={product.imageUrl}
             alt={product.name}
