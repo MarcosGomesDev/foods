@@ -47,7 +47,7 @@ export function ProductItem({ product, className }: ProductItemProps) {
               {formatCurrency(calculateProductTotalPrice(product))}
             </h3>
             {product.discountPercentage > 0 && (
-              <span className="text-xs text-muted line-through">
+              <span className="text-xs text-muted-foreground line-through">
                 {formatCurrency(Number(product.price))}
               </span>
             )}
