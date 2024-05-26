@@ -141,6 +141,10 @@ export function ProductDetails({
         products={suggestedProducts}
         className="space-y-4 pt-6"
       />
+
+      <div className="mt-6 px-5">
+        <Button className="w-full font-semibold">Adicionar à sacola</Button>
+      </div>
     </div>
   );
 }
