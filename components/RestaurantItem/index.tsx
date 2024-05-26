@@ -23,7 +23,7 @@ export function RestaurantItem({ restaurant, className }: RestaurantItemProps) {
           className=" rounded-lg object-cover"
         />
 
-        <div className="absolute left-2 top-2 flex items-center gap-[2px] bg-primary bg-white px-2 py-[2px] text-xs font-semibold">
+        <div className="absolute left-2 top-2 flex items-center gap-[2px] rounded-md bg-primary bg-white px-2 py-[2px] text-xs font-semibold">
           <StarIcon size={12} className="fill-yellow-400 text-yellow-400" />
           <span>5.0</span>
         </div>
