@@ -33,7 +33,7 @@ export default async function Home() {
 
       <SearchInput className="px-5 pt-6" />
 
-      <CategoryList className="px-5 pt-6" />
+      <CategoryList className="px-5 pb-1 pt-6" />
 
       <div className="px-5 pt-6">
         <PromoBanner
