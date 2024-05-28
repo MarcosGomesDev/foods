@@ -40,7 +40,7 @@ export function ProductItem({ product, className }: ProductItemProps) {
           )}
         </div>
 
-        <div>
+        <div className="w-full">
           <h2 className="truncate text-sm">{product.name}</h2>
           <div className="flex items-center gap-1">
             <h3 className="font-semibold">

@@ -8,8 +8,10 @@ import { Button } from "../ui/button";
 
 interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
+  vertical?: boolean;
   hasButton?: boolean;
   href?: string;
+  grid?: boolean;
   products: Prisma.ProductGetPayload<{
     include: {
       restaurant: {
@@ -24,13 +26,15 @@ interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
 export function ProductList({
   className,
   title,
+  vertical = false,
   hasButton = false,
+  grid = false,
   href = "/products",
   products,
 }: ProductListProps) {
   return (
     <div className={twMerge([className])}>
-      <div className="flex items-center justify-between px-5">
+      <div className="mb-6 flex items-center justify-between px-5">
         {title && <h2 className="font-semibold">{title}</h2>}
         {hasButton && (
           <Link href={href}>
@@ -45,14 +49,21 @@ export function ProductList({
         )}
       </div>
 
-      <div className="flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+      <div
+        className={twMerge([
+          "flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden",
+          vertical && "mt-6 flex-col gap-6 px-5",
+          grid && `grid grid-cols-2 gap-6 px-5`,
+        ])}
+      >
         {products.map((product, index) => (
           <ProductItem
             key={product.id}
             product={product}
             className={twMerge([
-              index === 0 ? "ml-5" : "",
-              index === products.length - 1 ? "mr-5" : "",
+              index === 0 && !vertical && !grid ? "ml-5" : "",
+              index === products.length - 1 && !vertical && !grid ? "mr-5" : "",
+              (vertical || grid) && "min-w-full",
             ])}
           />
         ))}
