@@ -7,7 +7,7 @@ interface CategoryItemProps {
 
 export function CategoryItem({ category }: CategoryItemProps) {
   return (
-    <div className="flex w-full min-w-fit items-center justify-center gap-3 rounded-full bg-white px-4 py-1 shadow-sm">
+    <div className="flex w-full min-w-fit items-center justify-center gap-3 rounded-full bg-white px-4 py-1 shadow-md">
       <Image
         src={category.imageUrl}
         alt={category.name}
