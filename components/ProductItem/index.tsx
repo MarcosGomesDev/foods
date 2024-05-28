@@ -24,7 +24,7 @@ export function ProductItem({ product, className }: ProductItemProps) {
       href={`/products/${product.id}`}
     >
       <div className="w-full space-y-2">
-        <div className="relative h-[136px]">
+        <div className="relative aspect-square w-full">
           <Image
             src={product.imageUrl}
             alt={product.name}
