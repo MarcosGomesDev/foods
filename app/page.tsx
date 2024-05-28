@@ -47,6 +47,7 @@ export default async function Home() {
         title="Pedidos Recomendados"
         hasButton
         products={products}
+        href="/products/recommended"
       />
 
       <div className="px-5 pt-6">
@@ -61,6 +62,7 @@ export default async function Home() {
         title="Restaurantes Recomendados"
         hasButton
         restaurants={restaurants}
+        href="/restaurants/recommended"
       />
     </>
   );
