@@ -50,7 +50,7 @@ export default async function RestaurantPage({
   }
 
   return (
-    <div>
+    <div className="pb-6">
       <RestaurantImage restaurant={restaurant} />
 
       <RestaurantDetails restaurant={restaurant} />
@@ -59,7 +59,7 @@ export default async function RestaurantPage({
         {restaurant.categories.map((category) => (
           <div
             key={category.id}
-            className="min-w-[167px] rounded-lg bg-muted-foreground text-center"
+            className="min-w-[167px] rounded-lg bg-gray-200 py-1 text-center"
           >
             <span className="text-xs text-muted-foreground">
               {category.name}

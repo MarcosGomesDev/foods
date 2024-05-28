@@ -14,10 +14,10 @@ interface RestaurantItemProps extends React.HTMLAttributes<HTMLDivElement> {
 export function RestaurantItem({ restaurant, className }: RestaurantItemProps) {
   return (
     <Link
-      className="min-w-[266px] max-w-[266px]"
+      className={twMerge(["min-w-[266px] max-w-[266px]", className])}
       href={`/restaurants/${restaurant.id}`}
     >
-      <div className={twMerge(["w-full space-y-3", className])}>
+      <div className={twMerge(["w-full space-y-3"])}>
         <div className="relative h-[136px]">
           <Image
             src={restaurant.imageUrl}
