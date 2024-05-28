@@ -28,15 +28,16 @@ export function RestaurantList({
       <div className="mb-6 flex items-center justify-between px-5">
         {title && <h2 className="font-semibold">{title}</h2>}
         {hasButton && (
-          <Link href={href}>
-            <Button
-              variant="ghost"
-              className="h-fit p-0 text-primary hover:bg-transparent"
-            >
+          <Button
+            variant="ghost"
+            className="h-fit p-0 text-primary hover:bg-transparent"
+            asChild
+          >
+            <Link href={href}>
               Ver todos
               <ChevronRightIcon size={16} />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         )}
       </div>
 
