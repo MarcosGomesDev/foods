@@ -1,3 +1,4 @@
+import { Dialog } from "@/components/Dialog";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { CartProvider } from "./contexts/cart";
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <CartProvider>{children}</CartProvider>
+        <Dialog />
       </body>
     </html>
   );
