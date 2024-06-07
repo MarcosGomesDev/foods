@@ -27,7 +27,7 @@ export function ProductImage({ product }: ProductImageProps) {
       />
 
       <Button
-        className="absolute left-4 top-4 rounded-full bg-white text-foreground hover:text-white"
+        className="absolute left-4 top-4 rounded-full border-[0.4px] border-solid border-muted-foreground bg-white text-foreground hover:border-none hover:text-white"
         size="icon"
         onClick={handleBackClick}
       >
