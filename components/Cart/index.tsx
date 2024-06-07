@@ -1,13 +1,14 @@
-import { CartContext } from "@/app/contexts/cart";
 import { formatCurrency } from "@/helpers/price";
-import { useContext } from "react";
+import { useCart } from "@/services";
 import { CartItem } from "../CartItem";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import { Separator } from "../ui/separator";
 
 export function Cart() {
-  const { products, discount, subtotal, total } = useContext(CartContext);
+  const { discount, products, subtotal, total } = useCart();
+
+  console.log(discount, products, subtotal, total);
 
   return (
     <div className="py-5">

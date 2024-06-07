@@ -1,6 +1,5 @@
 "use client";
 
-import { CartContext } from "@/app/contexts/cart";
 import { Cart } from "@/components/Cart";
 import { DeliveryInfo } from "@/components/DeliveryInfo";
 import { DiscountBadge } from "@/components/DiscountBadge";
@@ -13,11 +12,11 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { calculateProductTotalPrice, formatCurrency } from "@/helpers/price";
-import { useDialogService } from "@/services";
+import { useCart, useCartService, useDialogService } from "@/services";
 import { Prisma } from "@prisma/client";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
@@ -37,7 +36,9 @@ export function ProductDetails({
 
   const { showDialog, hideDialog } = useDialogService();
 
-  const { products, addProductToCart, clearCart } = useContext(CartContext);
+  const { products } = useCart();
+
+  const { addProductToCart, clearCart } = useCartService();
 
   function handleAddToCartClick(): void {
     const hasDifferentRestaurantProduct = products.some(

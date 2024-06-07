@@ -1,8 +1,8 @@
-import { CartContext, CartProduct } from "@/app/contexts/cart";
+import { CartProduct } from "@/app/contexts/cart";
 import { calculateProductTotalPrice, formatCurrency } from "@/helpers/price";
+import { useCartService } from "@/services";
 import { ChevronLeftIcon, ChevronRightIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
-import { useContext } from "react";
 import { Button } from "../ui/button";
 
 interface CartItemProps {
@@ -14,7 +14,7 @@ export function CartItem({ cartProduct }: CartItemProps) {
     decreaseProductQuantity,
     increaseProductQuantity,
     removeProductFromCart,
-  } = useContext(CartContext);
+  } = useCartService();
 
   return (
     <div className="flex items-center justify-between">

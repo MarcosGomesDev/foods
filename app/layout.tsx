@@ -1,7 +1,6 @@
 import { Dialog } from "@/components/Dialog";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { CartProvider } from "./contexts/cart";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -22,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <CartProvider>{children}</CartProvider>
+        {children}
         <Dialog />
       </body>
     </html>
