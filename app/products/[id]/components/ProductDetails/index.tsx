@@ -13,6 +13,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { calculateProductTotalPrice, formatCurrency } from "@/helpers/price";
+import { useDialogService } from "@/services";
 import { Prisma } from "@prisma/client";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
@@ -34,9 +35,31 @@ export function ProductDetails({
   const [quantity, setQuantity] = useState<number>(1);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { addProductToCart } = useContext(CartContext);
+  const { showDialog, hideDialog } = useDialogService();
+
+  const { products, addProductToCart, clearCart } = useContext(CartContext);
 
   function handleAddToCartClick(): void {
+    const hasDifferentRestaurantProduct = products.some(
+      (cartProduct) => cartProduct.restaurantId !== product.restaurantId,
+    );
+
+    if (hasDifferentRestaurantProduct) {
+      showDialog({
+        title: "Você só pode adicionar itens de um restaurante por vez!",
+        message:
+          "Deseja mesmo adicionar esse produto? Isso limpará sua sacola atual.",
+        onConfirm: () => {
+          clearCart();
+          addProductToCart(product, quantity);
+          hideDialog();
+          setIsOpen(true);
+        },
+        onCancel: hideDialog,
+      });
+      return;
+    }
+
     addProductToCart(product, quantity);
     setIsOpen(true);
   }
