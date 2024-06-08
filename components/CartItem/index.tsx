@@ -25,6 +25,7 @@ export function CartItem({ cartProduct }: CartItemProps) {
             src={cartProduct.imageUrl}
             alt={cartProduct.name}
             fill
+            sizes="30vw"
             className="rounded-lg object-cover"
           />
         </div>
