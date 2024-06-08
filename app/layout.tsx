@@ -4,6 +4,7 @@ import { SheetCart } from "@/components/SheetCart";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "./providers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        {children}
-        <SheetCart />
-        <CartBanner />
-        <Dialog />
+        <AuthProvider>
+          {children}
+          <SheetCart />
+          <CartBanner />
+          <Dialog />
+        </AuthProvider>
       </body>
     </html>
   );
