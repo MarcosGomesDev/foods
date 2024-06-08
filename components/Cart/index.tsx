@@ -1,5 +1,6 @@
 import { formatCurrency } from "@/helpers/price";
 import { useCart } from "@/services";
+import { useSheetCartService } from "@/services/sheetCart";
 import Image from "next/image";
 import Link from "next/link";
 import { CartItem } from "../CartItem";
@@ -9,6 +10,8 @@ import { Separator } from "../ui/separator";
 
 export function Cart() {
   const { discount, products, subtotal, total } = useCart();
+
+  const { hideSheetCart } = useSheetCartService();
 
   return (
     <div className="flex h-full flex-col py-5">
@@ -66,6 +69,8 @@ export function Cart() {
               src="/empty-bag.png"
               alt="Carrinho vazio"
               fill
+              sizes="30vw"
+              priority
               className="object-cover drop-shadow-md"
             />
           </div>
@@ -74,7 +79,9 @@ export function Cart() {
           </span>
 
           <Button className="mt-6" asChild>
-            <Link href="/">Voltar às compras</Link>
+            <Link href="/" onClick={hideSheetCart}>
+              Voltar às compras
+            </Link>
           </Button>
         </div>
       )}

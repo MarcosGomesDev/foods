@@ -1,4 +1,6 @@
+import { CartBanner } from "@/components/CartBanner";
 import { Dialog } from "@/components/Dialog";
+import { SheetCart } from "@/components/SheetCart";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -22,6 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         {children}
+        <SheetCart />
+        <CartBanner />
         <Dialog />
       </body>
     </html>

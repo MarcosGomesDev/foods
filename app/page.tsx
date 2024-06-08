@@ -28,7 +28,7 @@ export default async function Home() {
   });
 
   return (
-    <>
+    <div className="mb-3 pb-3">
       <Header />
 
       <SearchInput className="px-5 pt-6" />
@@ -66,6 +66,6 @@ export default async function Home() {
         restaurants={restaurants}
         href="/restaurants/recommended"
       />
-    </>
+    </div>
   );
 }

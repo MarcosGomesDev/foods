@@ -1,18 +1,12 @@
 "use client";
 
-import { Cart } from "@/components/Cart";
 import { DeliveryInfo } from "@/components/DeliveryInfo";
 import { DiscountBadge } from "@/components/DiscountBadge";
 import { ProductList } from "@/components/ProductList";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
 import { calculateProductTotalPrice, formatCurrency } from "@/helpers/price";
 import { useCart, useCartService, useDialogService } from "@/services";
+import { useSheetCartService } from "@/services/sheetCart";
 import { Prisma } from "@prisma/client";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
@@ -32,11 +26,12 @@ export function ProductDetails({
   suggestedProducts,
 }: ProductDetailsProps) {
   const [quantity, setQuantity] = useState<number>(1);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { showDialog, hideDialog } = useDialogService();
 
   const { products } = useCart();
+
+  const { showSheetCart } = useSheetCartService();
 
   const { addProductToCart, clearCart } = useCartService();
 
@@ -54,7 +49,7 @@ export function ProductDetails({
           clearCart();
           addProductToCart(product, quantity);
           hideDialog();
-          setIsOpen(true);
+          showSheetCart();
         },
         onCancel: hideDialog,
       });
@@ -62,7 +57,7 @@ export function ProductDetails({
     }
 
     addProductToCart(product, quantity);
-    setIsOpen(true);
+    showSheetCart();
   }
 
   function handleIncreaseQuantityClick(): void {
@@ -78,7 +73,9 @@ export function ProductDetails({
 
   return (
     <>
-      <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white py-5 pb-10">
+      <div
+        className={`relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white py-5 pb-10 ${products.length > 0 && "mb-24 pb-24"}`}
+      >
         <div className="px-5">
           {/* RESTAURANT */}
           <div className="flex items-center gap-[0.375rem]">
@@ -163,16 +160,6 @@ export function ProductDetails({
           </Button>
         </div>
       </div>
-
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetContent className="w-[90vw]">
-          <SheetHeader>
-            <SheetTitle className="text-left">Sacola</SheetTitle>
-          </SheetHeader>
-
-          <Cart />
-        </SheetContent>
-      </Sheet>
     </>
   );
 }
