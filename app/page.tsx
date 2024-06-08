@@ -39,6 +39,7 @@ export default async function Home() {
         <PromoBanner
           src="/promo-banner-01.png"
           alt="Até 30% de desconto em pizzas"
+          priority
         />
       </div>
 
@@ -54,6 +55,7 @@ export default async function Home() {
         <PromoBanner
           src="/promo-banner-02.png"
           alt="A partir de R$ 17,90 em lanches"
+          priority
         />
       </div>
 

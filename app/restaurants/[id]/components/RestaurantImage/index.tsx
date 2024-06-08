@@ -23,6 +23,8 @@ export function RestaurantImage({ restaurant }: RestaurantImageProps) {
         src={restaurant.imageUrl}
         alt={restaurant.name}
         fill
+        priority
+        sizes="100vw"
         className="object-cover"
       />
 

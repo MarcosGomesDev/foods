@@ -50,7 +50,7 @@ export default async function RestaurantPage({
   }
 
   return (
-    <div className="pb-6">
+    <div className="pb-5">
       <RestaurantImage restaurant={restaurant} />
 
       <RestaurantDetails restaurant={restaurant} />
@@ -74,10 +74,10 @@ export default async function RestaurantPage({
         products={restaurant.products}
       />
 
-      {restaurant.categories.map((category) => (
+      {restaurant.categories.map((category, index) => (
         <ProductList
           key={category.id}
-          className="mt-6 space-y-4"
+          className={`mt-6 space-y-4 ${index === restaurant.categories.length - 1 && "mb-12"}`}
           title={category.name}
           products={category.products}
         />

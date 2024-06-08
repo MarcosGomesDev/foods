@@ -29,6 +29,8 @@ export function ProductItem({ product, className }: ProductItemProps) {
             src={product.imageUrl}
             alt={product.name}
             fill
+            priority
+            sizes="30vw"
             className="rounded-lg object-cover shadow-md"
           />
 

@@ -23,6 +23,8 @@ export function ProductImage({ product }: ProductImageProps) {
         src={product.imageUrl}
         alt={product.name}
         fill
+        priority
+        sizes="100vw"
         className="object-cover"
       />
 

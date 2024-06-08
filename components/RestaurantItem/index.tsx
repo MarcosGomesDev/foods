@@ -23,6 +23,7 @@ export function RestaurantItem({ restaurant, className }: RestaurantItemProps) {
             src={restaurant.imageUrl}
             alt={restaurant.name}
             fill
+            sizes="40vw"
             className="rounded-lg object-cover"
           />
 

@@ -19,6 +19,7 @@ export function RestaurantDetails({ restaurant }: RestaurantDetailsProps) {
                 src={restaurant.imageUrl}
                 alt={restaurant.name}
                 fill
+                sizes="20vw"
                 className="rounded-full object-cover"
               />
             </div>

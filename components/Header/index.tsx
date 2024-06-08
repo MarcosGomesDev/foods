@@ -5,12 +5,17 @@ import { Button } from "../ui/button";
 
 export function Header() {
   return (
-    <div className="flex justify-between px-5 pt-6">
-      <div className="relative h-[30px] w-[100px]">
-        <Link href="/">
-          <Image src="/logo.png" alt="Foods" fill className="object-cover" />
-        </Link>
-      </div>
+    <div className="flex items-center justify-between px-5 pt-6">
+      <Link href="/">
+        <Image
+          src="/logo.png"
+          alt="Foods"
+          width={100}
+          height={30}
+          className="object-cover"
+          sizes="100px"
+        />
+      </Link>
       <Button
         size="icon"
         variant="outline"
