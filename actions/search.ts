@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/lib/prisma";
 
 export async function searchForRestaurants(search: string) {
