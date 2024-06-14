@@ -26,10 +26,9 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={poppins.className}>
         <AuthProvider>
-          {children}
+          <CartBanner>{children}</CartBanner>
           <SideMenu />
           <SheetCart />
-          <CartBanner />
           <Dialog />
         </AuthProvider>
       </body>
