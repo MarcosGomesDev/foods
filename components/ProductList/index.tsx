@@ -5,13 +5,18 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 import { ProductItem } from "../ProductItem";
 import { Button } from "../ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
 
 interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
-  vertical?: boolean;
   hasButton?: boolean;
   href?: string;
-  grid?: boolean;
   products: Prisma.ProductGetPayload<{
     include: {
       restaurant: {
@@ -26,14 +31,12 @@ interface ProductListProps extends React.HTMLAttributes<HTMLDivElement> {
 export function ProductList({
   className,
   title,
-  vertical = false,
   hasButton = false,
-  grid = false,
   href = "/products",
   products,
 }: ProductListProps) {
   return (
-    <div className={twMerge([className])}>
+    <div className={twMerge([className, "container"])}>
       <div className="mb-6 flex items-center justify-between px-5">
         {title && <h2 className="font-semibold">{title}</h2>}
         {hasButton && (
@@ -50,24 +53,30 @@ export function ProductList({
         )}
       </div>
 
-      <div
-        className={twMerge([
-          "flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden",
-          vertical && "mt-6 flex-col gap-6 px-5",
-          grid && `grid grid-cols-2 gap-6 px-5`,
-        ])}
-      >
-        {products.map((product, index) => (
-          <ProductItem
-            key={product.id}
-            product={product}
-            className={twMerge([
-              index === 0 && !vertical && !grid ? "ml-5" : "",
-              index === products.length - 1 && !vertical && !grid ? "mr-5" : "",
-              (vertical || grid) && "min-w-full",
-            ])}
-          />
-        ))}
+      <div className="md:flex md:justify-center">
+        <Carousel
+          opts={{
+            align: "start",
+          }}
+          className="max-w-screen-md lg:max-w-[880px] xl:max-w-[1140px]"
+        >
+          <CarouselContent>
+            {products.map((product, index) => (
+              <CarouselItem
+                key={product.id}
+                className={twMerge([
+                  "min-w-[140px] max-w-[140px] lg:min-w-[180px] lg:max-w-[180px]",
+                  index === 0 && "ml-5 lg:ml-0",
+                  index === products.length - 1 && "mr-5 lg:mr-0",
+                ])}
+              >
+                <ProductItem product={product} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden lg:flex" />
+          <CarouselNext className="hidden lg:flex" />
+        </Carousel>
       </div>
     </div>
   );
