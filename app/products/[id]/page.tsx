@@ -1,5 +1,8 @@
+import { Header } from "@/components/Header";
+import { ProductList } from "@/components/ProductList";
 import { db } from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import { AddToBagButton } from "./components/AddToBagButton";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductImage } from "./components/ProductImage";
 
@@ -40,10 +43,16 @@ export default async function ProductPage({
 
   return (
     <div>
+      <Header className="hidden lg:flex" />
+
       <ProductImage product={product} />
 
       {/* TITLE & PRICE */}
-      <ProductDetails product={product} suggestedProducts={juices} />
+      <ProductDetails product={product} />
+
+      <ProductList title="Sucos" products={juices} className="space-y-4 pt-6" />
+
+      <AddToBagButton product={product} />
     </div>
   );
 }
