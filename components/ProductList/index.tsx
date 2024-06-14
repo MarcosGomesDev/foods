@@ -58,7 +58,7 @@ export function ProductList({
           opts={{
             align: "start",
           }}
-          className="max-w-screen-md lg:max-w-[880px] xl:max-w-[1140px]"
+          className="max-w-screen-md lg:max-w-[880px] xl:max-w-[1070px]"
         >
           <CarouselContent>
             {products.map((product, index) => (

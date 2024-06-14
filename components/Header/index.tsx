@@ -16,35 +16,32 @@ export function Header({ hiddenInput = false, className }: HeaderProps) {
   const { showSideMenu } = useSideMenuService();
 
   return (
-    <div
-      className={twMerge([
-        "container flex items-center justify-between px-5 pt-6",
-        className,
-      ])}
-    >
-      <Link href="/">
-        <Image
-          src="/logo.png"
-          alt="Foods"
-          width={100}
-          height={30}
-          className="object-cover"
-          sizes="100px"
-        />
-      </Link>
+    <div className={twMerge([" border-b py-6", className])}>
+      <div className="container flex items-center justify-between px-5">
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            alt="Foods"
+            width={100}
+            height={30}
+            className="object-cover"
+            sizes="100px"
+          />
+        </Link>
 
-      {!hiddenInput && (
-        <SearchInput className="hidden max-w-[600px] flex-auto lg:flex" />
-      )}
+        {!hiddenInput && (
+          <SearchInput className="hidden max-w-[600px] flex-auto lg:flex" />
+        )}
 
-      <Button
-        size="icon"
-        variant="outline"
-        className="border-none bg-transparent"
-        onClick={showSideMenu}
-      >
-        <MenuIcon />
-      </Button>
+        <Button
+          size="icon"
+          variant="outline"
+          className="border-none bg-transparent"
+          onClick={showSideMenu}
+        >
+          <MenuIcon />
+        </Button>
+      </div>
     </div>
   );
 }
