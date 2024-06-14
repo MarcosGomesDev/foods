@@ -2,7 +2,7 @@
 
 import { searchForRestaurants } from "@/actions/search";
 import { Header } from "@/components/Header";
-import { RestaurantList } from "@/components/RestaurantList";
+import { RestaurantItem } from "@/components/RestaurantItem";
 import { Restaurant } from "@prisma/client";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -31,12 +31,20 @@ export default function RestaurantsPage() {
   return (
     <>
       <Header />
-      <RestaurantList
-        title="Restaurantes Encontrados"
-        className="py-6"
-        restaurants={restaurants}
-        vertical
-      />
+      <div className="container px-5 py-6">
+        <h2 className="mb-6 text-lg font-semibold">
+          Restaurantes Recomendados
+        </h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          {restaurants.map((restaurant) => (
+            <RestaurantItem
+              key={restaurant.id}
+              restaurant={restaurant}
+              className="min-w-full"
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 }
