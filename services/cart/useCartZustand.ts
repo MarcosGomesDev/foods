@@ -11,6 +11,7 @@ const useCartStore = create<CartService>((set) => ({
     subtotal: 0,
     total: 0,
   },
+  setCart: (state) => set({ cart: state }),
   addProductToCart: (product, quantity) =>
     set((state) => {
       const { products } = state.cart;
@@ -205,6 +206,7 @@ export function useCartServiceZustand(): Pick<
   | "increaseProductQuantity"
   | "removeProductFromCart"
   | "clearCart"
+  | "setCart"
 > {
   const addProductToCart = useCartStore((state) => state.addProductToCart);
   const decreaseProductQuantity = useCartStore(
@@ -218,11 +220,14 @@ export function useCartServiceZustand(): Pick<
   );
   const clearCart = useCartStore((state) => state.clearCart);
 
+  const setCart = useCartStore((state) => state.setCart);
+
   return {
     addProductToCart,
     decreaseProductQuantity,
     increaseProductQuantity,
     removeProductFromCart,
     clearCart,
+    setCart,
   };
 }

@@ -14,6 +14,7 @@ export function useCartService(): Pick<
   | "increaseProductQuantity"
   | "removeProductFromCart"
   | "clearCart"
+  | "setCart"
 > {
   return useCartServiceZustand();
 }

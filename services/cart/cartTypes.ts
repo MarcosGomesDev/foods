@@ -23,12 +23,9 @@ export interface Cart {
 }
 
 export interface CartService {
-  // products: CartProduct[];
-  // subtotal: number;
-  // total: number;
-  // discount: number;
   cart: Cart;
   /* eslint-disable no-unused-vars */
+  setCart: (cart: Cart) => void;
   addProductToCart: (product: ProductWithRestaurant, quantity: number) => void;
   decreaseProductQuantity: (productId: string) => void;
   increaseProductQuantity: (productId: string) => void;
