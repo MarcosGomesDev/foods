@@ -4,13 +4,18 @@ import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { RestaurantItem } from "../RestaurantItem";
 import { Button } from "../ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
 
 interface RestaurantListProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   hasButton?: boolean;
-  vertical?: boolean;
   href?: string;
-  grid?: boolean;
   restaurants: Restaurant[];
 }
 
@@ -18,13 +23,11 @@ export function RestaurantList({
   className,
   title,
   hasButton = false,
-  vertical = false,
-  grid = false,
   href = "/restaurants",
   restaurants,
 }: RestaurantListProps) {
   return (
-    <div className={twMerge([className])}>
+    <div className={twMerge([className, "container"])}>
       <div className="mb-6 flex items-center justify-between px-5">
         {title && <h2 className="font-semibold">{title}</h2>}
         {hasButton && (
@@ -41,26 +44,30 @@ export function RestaurantList({
         )}
       </div>
 
-      <div
-        className={twMerge([
-          "flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden",
-          vertical && "mt-6 flex-col gap-6 px-5",
-          grid && `grid grid-cols-2 gap-6`,
-        ])}
-      >
-        {restaurants.map((restaurant, index) => (
-          <RestaurantItem
-            key={restaurant.id}
-            restaurant={restaurant}
-            className={twMerge([
-              index === 0 && !vertical && !grid ? "ml-5" : "",
-              index === restaurants.length - 1 && !vertical && !grid
-                ? "mr-5"
-                : "",
-              (vertical || grid) && "min-w-full",
-            ])}
-          />
-        ))}
+      <div className="md:flex md:justify-center">
+        <Carousel
+          opts={{
+            align: "start",
+          }}
+          className="max-w-screen-md lg:max-w-[880px] xl:max-w-[1140px]"
+        >
+          <CarouselContent>
+            {restaurants.map((restaurant, index) => (
+              <CarouselItem
+                key={restaurant.id}
+                className={twMerge([
+                  "min-w-[266px] max-w-[266px] lg:min-w-[381px] lg:max-w-[381px]",
+                  index === 0 && "ml-5 lg:ml-0",
+                  index === restaurants.length - 1 && "mr-5 lg:mr-0",
+                ])}
+              >
+                <RestaurantItem restaurant={restaurant} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden lg:flex" />
+          <CarouselNext className="hidden lg:flex" />
+        </Carousel>
       </div>
     </div>
   );
