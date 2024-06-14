@@ -84,7 +84,7 @@ export default async function Home() {
         />
       </div>
 
-      <div className="container mt-10 hidden justify-center gap-4 pt-6 lg:flex">
+      <div className="container mt-10 hidden justify-center gap-4 px-5 pt-6 lg:flex">
         <PromoBanner
           href={"/"}
           src="/promo-banner-01-desk.png"
