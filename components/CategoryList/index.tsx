@@ -11,7 +11,7 @@ export async function CategoryList({ className }: CategoryListProps) {
   return (
     <div
       className={twMerge([
-        "flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden",
+        "container flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden",
         className,
       ])}
     >
