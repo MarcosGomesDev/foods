@@ -49,10 +49,8 @@ export function AddToBagButton({ product }: AddToBagButtonProps) {
   }
 
   return (
-    <div className="mt-6 px-5 lg:hidden">
-      <Button className="w-full font-semibold" onClick={handleAddToCartClick}>
-        Adicionar à sacola
-      </Button>
-    </div>
+    <Button className="w-full font-semibold" onClick={handleAddToCartClick}>
+      Adicionar à sacola
+    </Button>
   );
 }
