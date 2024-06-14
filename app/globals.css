@@ -57,3 +57,9 @@
     @apply text-foreground antialiased;
   }
 }
+
+@layer utilities {
+  .grid-cols-auto {
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  }
+}
