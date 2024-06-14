@@ -4,13 +4,24 @@ import { useSideMenuService } from "@/services";
 import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
+import { SearchInput } from "../SearchInput";
 import { Button } from "../ui/button";
 
-export function Header() {
+interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  hiddenInput?: boolean;
+}
+
+export function Header({ hiddenInput = false, className }: HeaderProps) {
   const { showSideMenu } = useSideMenuService();
 
   return (
-    <div className="container flex items-center justify-between px-5 pt-6">
+    <div
+      className={twMerge([
+        "container flex items-center justify-between px-5 pt-6",
+        className,
+      ])}
+    >
       <Link href="/">
         <Image
           src="/logo.png"
@@ -21,6 +32,11 @@ export function Header() {
           sizes="100px"
         />
       </Link>
+
+      {!hiddenInput && (
+        <SearchInput className="hidden max-w-[600px] flex-auto lg:flex" />
+      )}
+
       <Button
         size="icon"
         variant="outline"
