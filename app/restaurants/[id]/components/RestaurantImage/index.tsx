@@ -18,18 +18,18 @@ export function RestaurantImage({ restaurant }: RestaurantImageProps) {
   }
 
   return (
-    <div className="relative h-[250px] w-full">
+    <div className="relative h-[250px] w-full lg:h-[380px] lg:w-[750px]">
       <Image
         src={restaurant.imageUrl}
         alt={restaurant.name}
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="rounded-md object-cover"
       />
 
       <Button
-        className="absolute left-4 top-4 rounded-full bg-white text-foreground hover:text-white"
+        className="absolute left-4 top-4 rounded-full bg-white text-foreground hover:text-white lg:hidden"
         size="icon"
         onClick={handleBackClick}
       >
