@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CategoryList } from "../components/CategoryList";
 import { Header } from "../components/Header";
 import { ProductList } from "../components/ProductList";
@@ -43,16 +44,15 @@ export default async function Home() {
             <SearchInput className="w-full" />
           </div>
         </div>
-        <div className="">
-          <div className="absolute bottom-0 right-36 drop-shadow-2xl">
-            <PromoBanner
-              href={"/"}
-              src="/banner-desktop.png"
-              alt="Até 30% de desconto em pizzas"
-              priority
-              className="h-auto w-[372px]"
-            />
-          </div>
+        <div className="absolute bottom-0 right-36 drop-shadow-2xl">
+          <Image
+            src="/banner-desktop.png"
+            alt="Imagem banner"
+            priority
+            width={372}
+            height={372}
+            className="h-auto w-[372px]"
+          />
         </div>
       </div>
 
