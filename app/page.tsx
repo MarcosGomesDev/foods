@@ -30,7 +30,7 @@ export default async function Home() {
 
   return (
     <>
-      <Header />
+      <Header hiddenInput />
       <SearchInput className="px-5 pt-6 lg:hidden" />
 
       <div className="relative mt-6 hidden h-[500px] w-full justify-between overflow-hidden bg-red-600 px-28 lg:flex">
