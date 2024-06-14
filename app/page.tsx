@@ -33,7 +33,7 @@ export default async function Home() {
       <Header hiddenInput />
       <SearchInput className="px-5 pt-6 lg:hidden" />
 
-      <div className="relative mt-6 hidden h-[500px] w-full justify-between overflow-hidden bg-red-600 px-28 lg:flex">
+      <div className="relative hidden h-[500px] w-full justify-between overflow-hidden bg-red-600 px-28 lg:flex">
         <div className="flex h-full flex-col justify-center space-y-4 text-left text-white">
           <h3 className=" text-5xl font-bold ">Esta com fome?</h3>
           <p>
@@ -41,7 +41,7 @@ export default async function Home() {
             você.
           </p>
           <div className="flex h-[88px] w-[658px] items-center rounded-md bg-white p-5">
-            <SearchInput className="w-full" />
+            <SearchInput className="w-full text-black" />
           </div>
         </div>
         <div className="absolute bottom-0 right-36 drop-shadow-2xl">
