@@ -36,6 +36,7 @@ export function RestaurantItem({ restaurant, className }: RestaurantItemProps) {
           <Button
             size="icon"
             className="absolute right-2 top-2 size-7 rounded-full bg-gray-700"
+            aria-label="Favoritar restaurante"
           >
             <HeartIcon size={16} className="fill-white" />
           </Button>

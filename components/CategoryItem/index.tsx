@@ -14,9 +14,10 @@ export function CategoryItem({ category }: CategoryItemProps) {
     >
       <Image
         src={category.imageUrl}
-        alt={category.name}
+        alt={"categoria" + category.name}
         width={30}
         height={30}
+        priority
         className="aspect-square"
       />
 

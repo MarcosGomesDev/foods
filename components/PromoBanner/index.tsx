@@ -12,9 +12,9 @@ export function PromoBanner({ href, alt, ...props }: PromoBannerProps) {
         width={0}
         height={0}
         className="h-auto w-full object-contain"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        sizes="100vw"
         alt={alt}
-        quality={100}
+        priority
         {...props}
       />
     </Link>

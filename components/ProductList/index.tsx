@@ -43,6 +43,7 @@ export function ProductList({
           <Button
             variant="ghost"
             className="h-fit p-0 text-primary hover:bg-transparent"
+            aria-label="Ver todos os pedidos recomendados"
             asChild
           >
             <Link href={href}>

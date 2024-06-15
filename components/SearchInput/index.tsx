@@ -35,7 +35,7 @@ export function SearchInput({ className }: SearchInputProps) {
         onChange={handleSearch}
         value={search}
       />
-      <Button size="icon" type="submit">
+      <Button size="icon" type="submit" aria-label="Enviar pesquisa">
         <SearchIcon size={20} />
       </Button>
     </form>

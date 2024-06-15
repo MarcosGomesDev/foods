@@ -29,6 +29,7 @@ export function Header({ hiddenInput = false, className }: HeaderProps) {
             alt="Foods"
             width={100}
             height={30}
+            priority
             className="object-cover"
             sizes="100px"
           />
@@ -43,6 +44,7 @@ export function Header({ hiddenInput = false, className }: HeaderProps) {
           variant="outline"
           className="border-none bg-transparent"
           onClick={showSideMenu}
+          aria-label="Abrir menu lateral"
         >
           <MenuIcon />
         </Button>

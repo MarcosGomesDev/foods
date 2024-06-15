@@ -48,10 +48,8 @@ export default async function Home() {
           <Image
             src="/banner-desktop.png"
             alt="Imagem banner"
-            priority
             width={372}
             height={372}
-            className="h-auto w-[372px]"
           />
         </div>
       </div>
@@ -63,7 +61,6 @@ export default async function Home() {
           href={"/"}
           src="/promo-banner-01.png"
           alt="Até 30% de desconto em pizzas"
-          priority
         />
       </div>
 
@@ -80,7 +77,6 @@ export default async function Home() {
           href={"/"}
           src="/promo-banner-02.png"
           alt="A partir de R$ 17,90 em lanches"
-          priority
         />
       </div>
 
@@ -89,14 +85,12 @@ export default async function Home() {
           href={"/"}
           src="/promo-banner-01-desk.png"
           alt="Até 30% de desconto em pizzas"
-          priority
           className="w-[610px]"
         />
         <PromoBanner
           href={"/"}
           src="/promo-banner-02-desk.png"
           alt="A partir de R$ 17,90 em lanches"
-          priority
           className="w-[610px]"
         />
       </div>

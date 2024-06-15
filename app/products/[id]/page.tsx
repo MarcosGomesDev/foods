@@ -42,21 +42,26 @@ export default async function ProductPage({
   });
 
   return (
-    <div className="lg:container">
+    <>
       <Header className="hidden lg:flex" />
+      <div className="container">
+        <div className="flex flex-col lg:mt-6 lg:flex-row lg:gap-6 lg:px-5">
+          <ProductImage product={product} />
 
-      <div className="flex flex-col lg:mt-6 lg:flex-row lg:gap-6 lg:px-5">
-        <ProductImage product={product} />
+          {/* TITLE & PRICE */}
+          <ProductDetails product={product} />
+        </div>
 
-        {/* TITLE & PRICE */}
-        <ProductDetails product={product} />
+        <ProductList
+          title="Sucos"
+          products={juices}
+          className="space-y-4 pt-6"
+        />
+
+        <div className="mt-6 px-5 lg:hidden">
+          <AddToBagButton product={product} />
+        </div>
       </div>
-
-      <ProductList title="Sucos" products={juices} className="space-y-4 pt-6" />
-
-      <div className="mt-6 px-5 lg:hidden">
-        <AddToBagButton product={product} />
-      </div>
-    </div>
+    </>
   );
 }
