@@ -19,7 +19,7 @@ export function CartBanner({ children }: { children: React.ReactNode }) {
         {children}
       </div>
       {products.length > 0 && (
-        <div className="fixed bottom-0 left-0 z-50 h-20 w-full bg-white p-5 pt-3 drop-shadow-lg">
+        <div className="fixed bottom-0 left-0 z-50 h-20 w-full border-t bg-white p-5 pt-3 drop-shadow-lg">
           <div className="container flex items-center justify-between">
             {/* PRICE */}
             <div>
