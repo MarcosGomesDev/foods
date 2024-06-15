@@ -30,14 +30,14 @@ export default async function CategoriesPage({
   return (
     <>
       <Header />
-      <div className="px-5 py-6">
-        <h2 className="mb-6 text-lg font-semibold">{category.name}</h2>
-        <div className="grid grid-cols-2 gap-6">
+      <div className="container px-5 py-6">
+        <h2 className="mb-6 text-lg font-semibold">Pedidos Recomendados</h2>
+        <div className="md:grid-cols-auto grid grid-cols-2 gap-6">
           {category.products.map((product) => (
             <ProductItem
-              className="min-w-full"
               key={product.id}
               product={product}
+              className="min-w-full"
             />
           ))}
         </div>
