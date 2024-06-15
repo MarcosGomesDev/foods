@@ -16,7 +16,12 @@ export function Header({ hiddenInput = false, className }: HeaderProps) {
   const { showSideMenu } = useSideMenuService();
 
   return (
-    <div className={twMerge([" border-b py-6", className])}>
+    <div
+      className={twMerge([
+        "sticky top-0 z-50 flex items-center border-b bg-white py-5",
+        className,
+      ])}
+    >
       <div className="container flex items-center justify-between px-5">
         <Link href="/">
           <Image
