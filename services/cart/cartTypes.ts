@@ -5,7 +5,9 @@ interface ProductWithRestaurant
     include: {
       restaurant: {
         select: {
+          id: true;
           deliveryFee: true;
+          deliveryTimeMinutes: true;
         };
       };
     };

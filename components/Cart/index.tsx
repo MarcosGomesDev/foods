@@ -1,8 +1,12 @@
+import { createOrder } from "@/actions/order";
 import { formatCurrency } from "@/helpers/price";
-import { useCart } from "@/services";
+import { useCart, useCartService, useDialogService } from "@/services";
 import { useSheetCartService } from "@/services/sheetCart";
+import { OrderStatus } from "@prisma/client";
+import { Loader2 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
 import { CartItem } from "../CartItem";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
@@ -10,8 +14,66 @@ import { Separator } from "../ui/separator";
 
 export function Cart() {
   const { discount, products, subtotal, total } = useCart();
+  const { clearCart } = useCartService();
+  const { data } = useSession();
 
   const { hideSheetCart } = useSheetCartService();
+  const { showDialog } = useDialogService();
+
+  const [isSubmittingLogin, setIsSubmittingLogin] = useState<boolean>(false);
+
+  async function handleFinishOrderClick() {
+    if (!data?.user) return;
+
+    const restaurant = products[0].restaurant;
+
+    try {
+      setIsSubmittingLogin(true);
+
+      await createOrder({
+        total,
+        subtotal,
+        discount,
+        deliveryFee: restaurant.deliveryFee,
+        deliveryTimeMinutes: restaurant.deliveryTimeMinutes,
+        restaurant: {
+          connect: {
+            id: restaurant.id,
+          },
+        },
+        status: OrderStatus.PENDING,
+        user: {
+          connect: {
+            id: data.user.id,
+          },
+        },
+      });
+      hideSheetCart();
+      clearCart();
+
+      showDialog({
+        title: "Pedido Efetuado!",
+        message: "Seu pedido foi realizado com sucesso!",
+        onConfirm: () => {},
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmittingLogin(false);
+    }
+  }
+
+  function handleConfirmOrderClick() {
+    showDialog({
+      title: "Deseja finalizar seu pedido?",
+      message:
+        "Ao finalizar seu pedido, você concorda com os termos de uso e condições da nossa plataforma.",
+      onCancel: () => {},
+      onConfirm: () => {
+        handleFinishOrderClick();
+      },
+    });
+  }
 
   return (
     <div className="flex h-full flex-col py-5">
@@ -60,7 +122,17 @@ export function Cart() {
               </CardContent>
             </Card>
           </div>
-          <Button className="my-4">Finalizar pedido</Button>
+          <Button
+            className="my-4"
+            onClick={handleConfirmOrderClick}
+            disabled={isSubmittingLogin}
+          >
+            {isSubmittingLogin ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              "Finalizar pedido"
+            )}
+          </Button>
         </>
       ) : (
         <div className="flex h-full flex-col items-center justify-center space-y-3">
@@ -78,10 +150,8 @@ export function Cart() {
             Seu carrinho está vazio
           </span>
 
-          <Button className="mt-6" asChild>
-            <Link href="/" onClick={hideSheetCart}>
-              Voltar às compras
-            </Link>
+          <Button className="mt-6" onClick={hideSheetCart}>
+            Voltar às compras
           </Button>
         </div>
       )}
