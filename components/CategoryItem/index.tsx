@@ -14,7 +14,7 @@ export function CategoryItem({ category }: CategoryItemProps) {
     >
       <Image
         src={category.imageUrl}
-        alt={"categoria" + category.name}
+        alt={"categoria " + category.name}
         width={30}
         height={30}
         priority
