@@ -71,7 +71,7 @@ export function SideMenu() {
             className="w-full justify-start space-x-3 text-sm font-normal"
             asChild
           >
-            <Link href="/">
+            <Link href="/" onClick={hideSideMenu}>
               <HomeIcon size={16} />
               <span className="block">Início</span>
             </Link>
@@ -83,6 +83,7 @@ export function SideMenu() {
                 variant="ghost"
                 className="w-full justify-start space-x-3 text-sm font-normal"
                 asChild
+                onClick={hideSideMenu}
               >
                 <Link href="/my-orders">
                   <ScrollTextIcon size={16} />
@@ -93,6 +94,7 @@ export function SideMenu() {
               <Button
                 variant="ghost"
                 className="w-full justify-start space-x-3 text-sm font-normal"
+                onClick={hideSideMenu}
               >
                 <HeartIcon size={16} />
                 <span className="block">Restaurantes Favoritos</span>
