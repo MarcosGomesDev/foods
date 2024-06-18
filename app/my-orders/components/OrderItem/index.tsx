@@ -1,10 +1,14 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency } from "@/helpers/price";
+import { useCartService } from "@/services";
 import { OrderStatus, Prisma } from "@prisma/client";
 import { ChevronRightIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 
 interface OrderItemProps {
@@ -55,6 +59,23 @@ function getStatusOrderColor(status: OrderStatus): string {
 }
 
 export function OrderItem({ order }: OrderItemProps) {
+  const { addProductToCart } = useCartService();
+  const router = useRouter();
+
+  function handleRedoOrderClick() {
+    order.products.forEach((orderProduct) => {
+      addProductToCart(
+        {
+          ...orderProduct.product,
+          restaurant: order.restaurant,
+        },
+        orderProduct.quantity,
+      );
+    });
+
+    router.push(`/restaurant/${order.restaurant.id}`);
+  }
+
   return (
     <Card>
       <CardContent className="space-y-3 p-5">
@@ -111,6 +132,7 @@ export function OrderItem({ order }: OrderItemProps) {
             size="sm"
             className="text-xs font-semibold text-primary"
             disabled={order.status !== "COMPLETED"}
+            onClick={handleRedoOrderClick}
           >
             Adicionar à sacola
           </Button>
