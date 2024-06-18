@@ -2,9 +2,10 @@
 
 import { db } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export async function createOrder(data: Prisma.OrderCreateInput) {
-  const order = await db.order.create({ data });
+  await db.order.create({ data });
 
-  return order;
+  revalidatePath("/my-orders");
 }

@@ -9,6 +9,7 @@ import {
   ScrollTextIcon,
 } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -68,9 +69,12 @@ export function SideMenu() {
           <Button
             variant="ghost"
             className="w-full justify-start space-x-3 text-sm font-normal"
+            asChild
           >
-            <HomeIcon size={16} />
-            <span className="block">Início</span>
+            <Link href="/">
+              <HomeIcon size={16} />
+              <span className="block">Início</span>
+            </Link>
           </Button>
 
           {data?.user && (
@@ -78,9 +82,12 @@ export function SideMenu() {
               <Button
                 variant="ghost"
                 className="w-full justify-start space-x-3 text-sm font-normal"
+                asChild
               >
-                <ScrollTextIcon size={16} />
-                <span className="block">Meus Pedidos</span>
+                <Link href="/my-orders">
+                  <ScrollTextIcon size={16} />
+                  <span className="block">Meus Pedidos</span>
+                </Link>
               </Button>
 
               <Button
