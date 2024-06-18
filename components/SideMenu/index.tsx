@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -19,6 +20,7 @@ export function SideMenu() {
   const menu = useSideMenu();
   const { data } = useSession();
   const { hideSideMenu } = useSideMenuService();
+  const pathname = usePathname();
 
   function handleSignOutClick(): void {
     signOut();
@@ -67,7 +69,7 @@ export function SideMenu() {
 
         <div className="space-y-2">
           <Button
-            variant="ghost"
+            variant={pathname === "/" ? "default" : "ghost"}
             className="w-full justify-start space-x-3 text-sm font-normal"
             asChild
           >
@@ -80,7 +82,7 @@ export function SideMenu() {
           {data?.user && (
             <>
               <Button
-                variant="ghost"
+                variant={pathname === "/my-orders" ? "default" : "ghost"}
                 className="w-full justify-start space-x-3 text-sm font-normal"
                 asChild
                 onClick={hideSideMenu}
@@ -92,7 +94,7 @@ export function SideMenu() {
               </Button>
 
               <Button
-                variant="ghost"
+                variant={pathname === "/favorites" ? "default" : "ghost"}
                 className="w-full justify-start space-x-3 text-sm font-normal"
                 onClick={hideSideMenu}
               >
