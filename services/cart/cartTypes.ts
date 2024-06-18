@@ -21,7 +21,7 @@ export interface Cart {
   products: CartProduct[];
   subtotal: number;
   total: number;
-  discount: number;
+  discounts: number;
 }
 
 export interface CartService {

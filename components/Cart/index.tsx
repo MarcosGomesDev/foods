@@ -13,7 +13,7 @@ import { Card, CardContent } from "../ui/card";
 import { Separator } from "../ui/separator";
 
 export function Cart() {
-  const { discount, products, subtotal, total } = useCart();
+  const { discounts, products, subtotal, total } = useCart();
   const { clearCart } = useCartService();
   const { data } = useSession();
 
@@ -33,12 +33,20 @@ export function Cart() {
       await createOrder({
         total,
         subtotal,
-        discount,
+        discounts,
         deliveryFee: restaurant.deliveryFee,
         deliveryTimeMinutes: restaurant.deliveryTimeMinutes,
         restaurant: {
           connect: {
             id: restaurant.id,
+          },
+        },
+        products: {
+          createMany: {
+            data: products.map((product) => ({
+              productId: product.id,
+              quantity: product.quantity,
+            })),
           },
         },
         status: OrderStatus.PENDING,
@@ -97,7 +105,7 @@ export function Cart() {
 
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground">Descontos</span>
-                  <span>- {formatCurrency(discount)}</span>
+                  <span>- {formatCurrency(discounts)}</span>
                 </div>
 
                 <Separator />

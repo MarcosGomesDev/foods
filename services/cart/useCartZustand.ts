@@ -6,7 +6,7 @@ import { CartService } from "./cartTypes";
 
 const useCartStore = create<CartService>((set) => ({
   cart: {
-    discount: 0,
+    discounts: 0,
     products: [],
     subtotal: 0,
     total: 0,
@@ -55,7 +55,7 @@ const useCartStore = create<CartService>((set) => ({
           ? Number(newProducts[0].restaurant.deliveryFee)
           : 0);
 
-      const discount =
+      const discounts =
         subtotal -
         total +
         (newProducts.length > 0
@@ -68,7 +68,7 @@ const useCartStore = create<CartService>((set) => ({
           products: newProducts,
           subtotal,
           total,
-          discount,
+          discounts,
         },
       };
     }),
@@ -100,7 +100,7 @@ const useCartStore = create<CartService>((set) => ({
           }),
           total,
           subtotal,
-          discount:
+          discounts:
             subtotal -
             total +
             Number(state.cart.products?.[0]?.restaurant?.deliveryFee),
@@ -134,7 +134,7 @@ const useCartStore = create<CartService>((set) => ({
           ? Number(newProducts[0].restaurant.deliveryFee)
           : 0);
 
-      const discount =
+      const discounts =
         subtotal -
         total +
         (newProducts.length > 0
@@ -146,7 +146,7 @@ const useCartStore = create<CartService>((set) => ({
           products: newProducts,
           total,
           subtotal,
-          discount,
+          discounts,
         },
       };
     }),
@@ -169,7 +169,7 @@ const useCartStore = create<CartService>((set) => ({
         ) +
         (products.length > 0 ? Number(products[0].restaurant.deliveryFee) : 0);
 
-      const discount =
+      const discounts =
         subtotal -
         total +
         (products.length > 0 ? Number(products[0].restaurant.deliveryFee) : 0);
@@ -179,7 +179,7 @@ const useCartStore = create<CartService>((set) => ({
           products,
           total,
           subtotal,
-          discount,
+          discounts,
         },
       };
     }),
@@ -187,7 +187,7 @@ const useCartStore = create<CartService>((set) => ({
     set((state) => ({
       ...state,
       cart: {
-        discount: 0,
+        discounts: 0,
         products: [],
         subtotal: 0,
         total: 0,
