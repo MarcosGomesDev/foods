@@ -6,6 +6,7 @@ import { OrderStatus } from "@prisma/client";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CartItem } from "../CartItem";
 import { Button } from "../ui/button";
@@ -19,6 +20,7 @@ export function Cart() {
 
   const { hideSheetCart } = useSheetCartService();
   const { showDialog } = useDialogService();
+  const router = useRouter();
 
   const [isSubmittingLogin, setIsSubmittingLogin] = useState<boolean>(false);
 
@@ -62,7 +64,7 @@ export function Cart() {
       showDialog({
         title: "Pedido Efetuado!",
         message: "Seu pedido foi realizado com sucesso!",
-        onConfirm: () => {},
+        onConfirm: () => router.push("/my-orders"),
       });
     } catch (error) {
       console.log(error);
