@@ -5,7 +5,7 @@ import { SideMenu } from "@/components/SideMenu";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "./providers";
+import { AuthProvider, ProgressBarProvider } from "./providers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,7 +26,9 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={poppins.className}>
         <AuthProvider>
-          <CartBanner>{children}</CartBanner>
+          <CartBanner>
+            <ProgressBarProvider>{children}</ProgressBarProvider>
+          </CartBanner>
           <SideMenu />
           <SheetCart />
           <Dialog />
