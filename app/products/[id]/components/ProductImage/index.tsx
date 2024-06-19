@@ -18,14 +18,14 @@ export function ProductImage({ product }: ProductImageProps) {
   }
 
   return (
-    <div className="lg:min-w-[600px] lg:max-w-[600px] relative h-[360px] w-full rounded-md shadow-md lg:h-[500px]">
+    <div className="relative h-[360px] w-full rounded-md shadow-md lg:h-[500px] lg:min-w-[600px] lg:max-w-[600px]">
       <Image
         src={product.imageUrl}
         alt={product.name}
         fill
         priority
         sizes="100vw"
-        className="rounded-md object-cover"
+        className="object-cover lg:rounded-md"
       />
 
       <Button

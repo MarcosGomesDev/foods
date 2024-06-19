@@ -49,7 +49,7 @@ export function RestaurantDetails({ restaurant }: RestaurantDetailsProps) {
       </div>
 
       {/* DESKTOP LAYOUT */}
-      <div className="w-[530px]">
+      <div className="hidden w-[530px] lg:flex">
         <div className="px-5">
           {/* RESTAURANT */}
           <div className="flex items-center justify-between">

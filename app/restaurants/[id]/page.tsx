@@ -54,7 +54,7 @@ export default async function RestaurantPage({
     <>
       <Header />
       <div className="container pb-5">
-        <div className="mt-6 lg:mb-8 lg:flex lg:flex-row lg:px-5">
+        <div className="lg:mb-8 lg:mt-6 lg:flex lg:flex-row lg:px-5">
           <RestaurantImage restaurant={restaurant} />
 
           <RestaurantDetails restaurant={restaurant} />

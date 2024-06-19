@@ -25,7 +25,7 @@ export function RestaurantImage({ restaurant }: RestaurantImageProps) {
         fill
         priority
         sizes="100vw"
-        className="rounded-md object-cover"
+        className="object-cover lg:rounded-md"
       />
 
       <Button
